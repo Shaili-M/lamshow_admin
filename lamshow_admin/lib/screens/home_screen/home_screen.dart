@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:lamshow_admin/models/lams.dart';
 import 'package:lamshow_admin/screens/add_image/upload_image.dart';
+import 'package:lamshow_admin/screens/detail_page/detail_page.dart';
 
 import 'package:provider/provider.dart';
 
@@ -46,7 +47,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 Navigator.pushNamed(context, UploadImage.routeName);
               },
               icon: Icon(Icons.add)),
-          IconButton(onPressed: () {}, icon: Icon(Icons.search)),
+          IconButton(
+            onPressed: () {},
+            icon: Icon(Icons.search),
+          ),
         ],
       ),
       drawer: Drawer(
@@ -74,7 +78,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       itemBuilder: (context, index) {
                         return InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.pushNamed(context, DetailPage.routeName,
+                                arguments: {
+                                  "index": index,
+                                  "list": snapshot.data,
+                                });
+                          },
                           child: Card(
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.0),
@@ -85,8 +95,11 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: Column(
                                 children: [
                                   Expanded(
-                                    child: Image.network(
-                                      snapshot.data![index].image!,
+                                    child: Hero(
+                                      tag: snapshot.data![index].title!,
+                                      child: Image.network(
+                                        snapshot.data![index].image!,
+                                      ),
                                     ),
                                   ),
                                   Align(
