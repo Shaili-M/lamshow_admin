@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:lamshow_admin/main.dart';
 import 'package:lamshow_admin/screens/add_image/upload_image.dart';
 import 'package:lamshow_admin/screens/detail_page/detail_page.dart';
 import 'package:lamshow_admin/screens/forgot_password/forgot_password_screen.dart';
@@ -14,6 +15,7 @@ final Map<String, WidgetBuilder> routes = {
   SignUpScreen.routeName: (context) => SignUpScreen(),
   ForgotPasswordScreen.routeName: (context) => ForgotPasswordScreen(),
   HomeScreen.routeName: (context) => HomeScreen(),
-  UploadImage.routeName: (context) => UploadImage(),
   DetailPage.routeName: (context) => DetailPage(),
+  UploadImage.routeName: (context) => UploadImage(),
+  AuthenticationWrapper.routeName: (context) => AuthenticationWrapper(),
 };

@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lamshow_admin/screens/sign_in/sign_in_screen.dart';
 
-import 'home_screen/home_screen.dart';
+import '../main.dart';
 
 class AuthenticationService {
   final FirebaseAuth _firebaseAuth;
@@ -31,7 +31,7 @@ class AuthenticationService {
       await _firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
 
-      Navigator.pushReplacementNamed(context, HomeScreen.routeName);
+      Navigator.pushReplacementNamed(context, AuthenticationWrapper.routeName);
 
       return "Signed in";
     } on FirebaseAuthException catch (e) {
@@ -62,8 +62,8 @@ class AuthenticationService {
     try {
       await _firebaseAuth
           .createUserWithEmailAndPassword(email: email, password: password)
-          .whenComplete(() =>
-              Navigator.pushReplacementNamed(context, HomeScreen.routeName));
+          .whenComplete(() => Navigator.pushReplacementNamed(
+              context, AuthenticationWrapper.routeName));
 
       return "Signed in";
     } on FirebaseAuthException catch (e) {
